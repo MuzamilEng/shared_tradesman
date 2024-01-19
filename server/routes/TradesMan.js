@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
-const { createTrademanProfile, updateTrademanProfile, deleteTrademanProfile, getAllTradesmenProfiles, getTrademanProfileById, getTrademanProfileByEmail, allTradesMen } = require('../controllers/Tradesmen');
+const { createTrademanProfile, updateTrademanProfile, deleteTrademanProfile, getAllTradesmenProfiles, getTrademanProfileById, getTrademanProfileByEmail, allTradesMen, searchTrademan } = require('../controllers/Tradesmen');
 const { authenticateJWT } = require('../middleware/authMiddleware');
 
 const storage = multer.diskStorage({
@@ -38,6 +38,7 @@ router.route('/').post(uploadFiles, createTrademanProfile);
 router.route('/').get(getAllTradesmenProfiles);
 router.route('/getProfile').get(getTrademanProfileByEmail);
 router.route('/getAllTradesmen').get(authenticateJWT, allTradesMen);
+router.route('/searchResult').get(searchTrademan)
 
 // Create a new letting
 
